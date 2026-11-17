@@ -1,0 +1,4 @@
+interface:
+  display_name: "Humanizer zh-HK"
+  short_description: "將中文 AI 草稿改寫為自然地道的香港書面語"
+  default_prompt: "使用 $humanizer-zh-hk 將以下文字改寫成自然、地道的香港書面語，並完整保留原文事實。"
