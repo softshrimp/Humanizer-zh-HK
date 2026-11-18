@@ -1,0 +1,37 @@
+# Humanizer-zh-HK
+
+> 專為香港書面語設計的開源「去 AI 味」Agent Skill（基於 blader/humanizer v4.0.0 與維基百科〈Signs of AI writing〉指南）。在不改動原文事實、數字與專業語境的前提下，清除 28 種 AI 寫作結構套路、內地互聯網黑話、兩岸詞彙錯置、歐化翻譯腔及簡繁轉換同形錯字，支援 Antigravity、Claude Code、Codex、Cursor 及 pi。
+
+## 核心定位與差異
+
+市面上現有的中文 Humanizer 工具多面向內地簡體（例如 `op7418/Humanizer-zh`）或台灣繁體（例如 `kevintsai1202/Humanizer-zh-TW`）。`Humanizer-zh-HK` 專門解決香港正式文章、商業報告、新聞稿、政策評論及企業文書面對的雙重失真問題：
+
+1. **對齊上游 `blader/humanizer` v4.0.0 全部 26 項結構套路（§1–§26）**：清除「不是 X 而是 Y」虛假對比、單句收尾（「這才是真正的關鍵」「細想一下」）、故作高深金句、鋪墊開場、與空氣爭辯、三連排比、破折號濫用（`——`）、裝飾性粗體標籤、聊天機械人殘留及向知情同事重述背景。
+2. **清除內地互聯網黑話（§12）與歐化句式（§11）**：改寫「賦能、抓手、顆粒度、閉環、賽道、痛點、降本增效」及萬能虛化動詞（「對…進行了…」「實現了…的提升」）。
+3. **修正兩岸詞彙錯置（§27）**：將「同比／環比」轉為「按年／按季」、「質量」轉為「質素」、「軟體／硬體／網路／專案／默認／視頻／服務器」轉為「軟件／硬件／網絡／項目／預設／影片／伺服器」、「通過」轉為「透過／經」。
+4. **校正簡轉繁同形錯字（§28）與港式標點（§21）**：統一改用香港繁體直角引號「`「…」`」（內層 `『…』`）及全形標點，修正「憑借→憑藉」、「制造→製造」、「范圍→範圍」、「占比→佔比」、「農歷→農曆」、「聯系→聯繫」、「這里→這裏」、「后續→後續」。
+
+## 快速安裝
+
+- Skills CLI（跨工具通用）：`npx skills add softshrimp/Humanizer-zh-HK --global --agent '*'`
+- Claude Code：`/plugin marketplace add softshrimp/Humanizer-zh-HK` 後執行 `/plugin install humanizer-zh-hk@humanizer-zh-hk`
+- Codex：`npx skills add softshrimp/Humanizer-zh-HK --global --agent codex`
+- pi：`pi install git:github.com/softshrimp/Humanizer-zh-HK`
+- Antigravity：安裝至 `~/.gemini/config/plugins/humanizer-zh-hk/` 或專案 `.agents/skills/humanizer-zh-hk/SKILL.md`
+
+## 七大類 28 種檢查模式
+
+- **A. 鋪墊造勢（§1–§5，見一次即改）**：1. 不是 X，而是 Y；2. 單句收尾與戲劇化碎句；3. 故作高深的金句；4. 入題前的鋪墊開場；5. 與空氣爭辯。
+- **B. 按規則套節奏與句式（§6–§11）**：6. 強湊三連排比；7. 重複句首主語；8. 破折號當萬能連接詞；9. 疊床架屋的限定詞；10. 生硬複合修飾詞與連字號濫用；11. 歐化被動句與萬能虛化動詞。
+- **C. 誇大拔高與借用權威（§12–§18）**：12. 高頻 AI 套話與互聯網黑話；13. 誇大意義與拔高結尾；14. 含糊其辭的關聯；15. 句尾硬掛意義尾巴；16. 公關宣傳與樓書旅遊腔；17. 借用空泛權威；18. 避用「是」與「有」。
+- **D. 按規則套格式與標點（§19–§21）**：19. 裝飾性粗體與標籤清單；20. 裝飾性標題與符號；21. 引號與中西標點錯置。
+- **E. 對話殘留與草稿痕跡（§22–§25）**：22. 聊天機械人殘留語；23. 知識截止免責聲明與無據揣測；24. 首句重複標題；25. 描寫文件本身而非主題。
+- **F. 搞錯讀者對象（§26）**：26. 向知情讀者重述背景。
+- **G. 非港式用詞與簡繁轉碼痕跡（§27–§28，港式專項必改）**：27. 內地與台灣詞彙錯置；28. 簡繁轉換同形錯字。
+
+## 重要連結
+
+- [GitHub 儲存庫](https://github.com/softshrimp/Humanizer-zh-HK)
+- [SKILL.md 核心提示詞原文](https://raw.githubusercontent.com/softshrimp/Humanizer-zh-HK/main/SKILL.md)
+- [官方展示與速查頁面](https://softshrimp.github.io/Humanizer-zh-HK/)
+- [上游專案 blader/humanizer](https://github.com/blader/humanizer)

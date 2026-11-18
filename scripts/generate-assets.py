@@ -67,31 +67,9 @@ def lerp_rgb(c1: tuple[int, int, int], c2: tuple[int, int, int], t: float) -> st
     return f"#{r:02X}{g:02X}{b:02X}"
 
 
-def build_hero_globe() -> str:
-    w, h = 1200, 540
-    cx, cy = 272.0, 278.0
-    r = 180.0
-    cam_d = 3.55 * r
-    tilt_x = math.radians(17.0)
-    tilt_z = math.radians(-10.0)
-    limb_r = r * math.sqrt(cam_d**2 / (cam_d**2 - r**2))
-
-    # Key light from upper-left-front
-    lx, ly, lz = -0.40, -0.46, 0.79
-    l_norm = math.sqrt(lx * lx + ly * ly + lz * lz)
-    lx, ly, lz = lx / l_norm, ly / l_norm, lz / l_norm
-
-    corpus = (
-        "香港書面語實事求是刪繁就簡保留事實數據準確主謂分明"
-        "按年上升服務質素軟件網絡項目預設透過渠道公帑按揭屋苑"
-        "憑藉製造範圍農曆聯繫特徵佔比拒絕空話直陳重點新聞報告"
-        "商業文書直角引號審慎克制清晰自然真憑實據去蕪存菁簡明"
-    )
-
-    lines: list[str] = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">',
+def _globe_defs() -> list[str]:
+    return [
         "  <defs>",
-        # Concave shaded interior of the hollow Wikipedia-style sphere
         '    <radialGradient id="hollowInterior" cx="46%" cy="40%" r="64%">',
         '      <stop offset="0%" stop-color="#D2CAB8"/>',
         '      <stop offset="55%" stop-color="#DFD8C8"/>',
@@ -107,20 +85,37 @@ def build_hero_globe() -> str:
         '      <stop offset="100%" stop-color="#B91C1C"/>',
         "    </linearGradient>",
         "  </defs>",
-        # Outer card
-        f'  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="20" fill="#FAF8F4" stroke="#E4DEC9" stroke-width="1.5"/>',
-        # Soft shadow under globe
+    ]
+
+
+def _render_globe_layers(cx: float, cy: float, r: float) -> list[str]:
+    """Render the 3D Wikipedia-style typographic puzzle-tile globe centered at (cx, cy)."""
+    cam_d = 3.55 * r
+    tilt_x = math.radians(17.0)
+    tilt_z = math.radians(-10.0)
+    limb_r = r * math.sqrt(cam_d**2 / (cam_d**2 - r**2))
+
+    lx, ly, lz = -0.40, -0.46, 0.79
+    l_norm = math.sqrt(lx * lx + ly * ly + lz * lz)
+    lx, ly, lz = lx / l_norm, ly / l_norm, lz / l_norm
+
+    corpus = (
+        "香港書面語實事求是刪繁就簡保留事實數據準確主謂分明"
+        "按年上升服務質素軟件網絡項目預設透過渠道公帑按揭屋苑"
+        "憑藉製造範圍農曆聯繫特徵佔比拒絕空話直陳重點新聞報告"
+        "商業文書直角引號審慎克制清晰自然真憑實據去蕪存菁簡明"
+    )
+
+    lines: list[str] = [
         f'  <ellipse cx="{cx:.1f}" cy="{cy + limb_r + 16:.1f}" rx="{limb_r * 0.78:.1f}" ry="16" fill="url(#floorShadow)"/>',
-        # Hollow interior shell (visible through the open top crown)
         f'  <circle cx="{cx:.1f}" cy="{cy:.1f}" r="{limb_r:.1f}" fill="url(#hollowInterior)" stroke="#C6BDA9" stroke-width="1.2"/>',
     ]
 
     dphi_deg = 9.0
-    lat_degs = list(range(-72, 73, 9))  # 17 latitude rings
+    lat_degs = list(range(-72, 73, 9))
     char_idx = 0
 
     def in_open_crown(phi_deg: float, lam_deg: float) -> bool:
-        # Irregular Wikipedia-style stepped top-right cutout exposing the hollow interior
         if phi_deg >= 54:
             return True
         if phi_deg >= 45 and (-28 <= lam_deg <= 105):
@@ -142,7 +137,6 @@ def build_hero_globe() -> str:
 
         for j in range(n_lon):
             lam_deg = -180.0 + j * dlam_deg + offset_deg
-            # Normalize to [-180, 180)
             if lam_deg >= 180.0:
                 lam_deg -= 360.0
             lam = math.radians(lam_deg)
@@ -165,7 +159,6 @@ def build_hero_globe() -> str:
             x, y, z = p
             nz = z / r
 
-            # Exact 2D perspective Jacobian
             s = cam_d / (cam_d - z)
             sp = cam_d / ((cam_d - z) ** 2)
             a = s * tu[0] + x * sp * tu[2]
@@ -174,7 +167,6 @@ def build_hero_globe() -> str:
             d = s * tv[1] + y * sp * tv[2]
             tx, ty = cx + x * s, cy + y * s
 
-            # Build slightly inset curved spherical quad polygon for each tile
             shrink = 0.94
             hp = math.radians(dphi_deg * 0.5 * shrink)
             hl = math.radians(dlam_deg * 0.5 * shrink)
@@ -196,7 +188,6 @@ def build_hero_globe() -> str:
             poly_pts = " ".join(pts)
 
             if nz < -0.10:
-                # Inside back-wall tiles visible mainly through the open crown
                 tile_op = 0.28 if y < cy + 10 else 0.16
                 glyph_op = 0.20 if y < cy + 10 else 0.10
                 tile_svg = (
@@ -214,7 +205,6 @@ def build_hero_globe() -> str:
                     continue
                 nx, ny, nzu = x / r, y / r, z / r
                 lit = max(0.0, nx * lx + ny * ly + nzu * lz)
-                # Ivory tile shading from crisp white highlight to warm stone shadow
                 tile_fill = lerp_rgb((223, 216, 200), (255, 254, 250), 0.18 + 0.82 * lit)
                 edge_col = lerp_rgb((178, 169, 152), (212, 204, 188), lit)
                 ink_col = lerp_rgb((71, 85, 105), (15, 23, 42), min(1.0, lit * 1.15))
@@ -241,19 +231,20 @@ def build_hero_globe() -> str:
     lines.extend(item[1] for item in front_tiles)
     lines.append("  </g>")
 
-    # Peeling AI-cliché puzzle chips drifting off the open upper-right crown
+    # Peeling AI-cliché chips offset relative to globe center
+    scale = r / 180.0
     peeling_chips = [
-        (382, 72, -14, "✕ 賦能", 0.95),
-        (446, 54, 10, "✕ 同比", 0.88),
-        (438, 112, -7, "✕ 閉環", 0.92),
-        (488, 88, 16, "✕ ——", 0.78),
-        (460, 154, 6, "✕ 細想一下", 0.84),
+        (cx + 110 * scale, cy - 206 * scale, -14, "✕ 賦能", 0.95),
+        (cx + 174 * scale, cy - 224 * scale, 10, "✕ 同比", 0.88),
+        (cx + 166 * scale, cy - 166 * scale, -7, "✕ 閉環", 0.92),
+        (cx + 216 * scale, cy - 190 * scale, 16, "✕ ——", 0.78),
+        (cx + 188 * scale, cy - 124 * scale, 6, "✕ 細想一下", 0.84),
     ]
     lines.append('  <g id="peeled-ai-tells">')
     for chip_x, chip_y, rot_deg, label, op in peeling_chips:
         chip_w = 24 + len(label) * 13
         lines.append(
-            f'    <g transform="translate({chip_x},{chip_y}) rotate({rot_deg})" opacity="{op}">'
+            f'    <g transform="translate({chip_x:.1f},{chip_y:.1f}) rotate({rot_deg})" opacity="{op}">'
         )
         lines.append(
             f'      <rect x="0" y="0" width="{chip_w}" height="25" rx="6" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1.15"/>'
@@ -264,6 +255,17 @@ def build_hero_globe() -> str:
         )
         lines.append("    </g>")
     lines.append("  </g>")
+    return lines
+
+
+def build_hero_globe() -> str:
+    w, h = 1200, 540
+    lines: list[str] = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">',
+        *_globe_defs(),
+        f'  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="20" fill="#FAF8F4" stroke="#E4DEC9" stroke-width="1.5"/>',
+        *_render_globe_layers(272.0, 278.0, 180.0),
+    ]
 
     # Right-side editorial hero copy (x >= 578, safely clear of globe & chips)
     rx = 578
@@ -289,7 +291,7 @@ def build_hero_globe() -> str:
     stats = [
         (578, "28 種", "AI 寫作痕跡（A–G）", "#B91C1C", "#FEF2F2", "#FECACA"),
         (774, "港式書面語", "正字 · 詞彙 · 直角引號", "#0F766E", "#F0FDFA", "#99F6E4"),
-        (970, "跨平台通用", "Claude / Codex / Antigravity", "#1D4ED8", "#EFF6FF", "#BFDBFE"),
+        (970, "跨平台通用", "Claude · Codex · Cursor", "#1D4ED8", "#EFF6FF", "#BFDBFE"),
     ]
     for sx, top_lbl, sub_lbl, accent, bg, bd in stats:
         lines.extend(
@@ -661,8 +663,43 @@ def build_workflow_modes() -> str:
     return "\n".join(lines) + "\n"
 
 
+def build_og_image() -> str:
+    """Build 1200x630 Open Graph social preview SVG for rasterization to PNG."""
+    w, h = 1200, 630
+    rx = 584
+    lines: list[str] = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">',
+        *_globe_defs(),
+        f'  <rect x="0" y="0" width="{w}" height="{h}" fill="#FAF8F4"/>',
+        f'  <rect x="18" y="18" width="{w - 36}" height="{h - 36}" rx="24" fill="#FAF8F4" stroke="#E4DEC9" stroke-width="2"/>',
+        *_render_globe_layers(260.0, 326.0, 182.0),
+        '  <g id="og-copy">',
+        f'    <rect x="{rx}" y="86" width="296" height="34" rx="17" fill="url(#accentPill)"/>',
+        f'    <text x="{rx + 148}" y="103.5" text-anchor="middle" dominant-baseline="central" '
+        f'font-family="{esc(SANS_FONT)}" font-size="13.5" font-weight="800" letter-spacing="0.6" fill="#FFFFFF">'
+        f'HONG KONG WRITTEN CHINESE · v4.0.0</text>',
+        f'    <text x="{rx}" y="182" font-family="{esc(SERIF_FONT)}" font-size="54" font-weight="800" fill="#0F172A">Humanizer-zh-HK</text>',
+        f'    <text x="{rx}" y="236" font-family="{esc(SANS_FONT)}" font-size="27" font-weight="800" fill="#991B1B">香港書面語「去 AI 味」Agent Skill</text>',
+        f'    <line x1="{rx}" y1="266" x2="1142" y2="266" stroke="#E2DDD0" stroke-width="1.5"/>',
+        f'    <text x="{rx}" y="310" font-family="{esc(SANS_FONT)}" font-size="18.5" font-weight="600" fill="#334155">'
+        f'清除 28 種 AI 寫作痕跡 · 內地黑話 · 兩岸詞錯置 · 簡轉繁錯字</text>',
+        f'    <text x="{rx}" y="346" font-family="{esc(SANS_FONT)}" font-size="17" fill="#475569">'
+        f'同比→按年 · 質量→質素 · 軟體→軟件 · “彎引號”→「直角引號」</text>',
+        f'    <rect x="{rx}" y="392" width="566" height="62" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.4"/>',
+        f'    <text x="{rx + 22}" y="423.5" dominant-baseline="central" font-family="{esc(SANS_FONT)}" font-size="17" font-weight="700" fill="#0F172A">'
+        f'支援 Claude Code · Codex · Cursor · Antigravity · pi</text>',
+        f'    <text x="{rx}" y="502" font-family="{esc(MONO_FONT)}" font-size="16" font-weight="700" fill="#0F766E">'
+        f'github.com/softshrimp/Humanizer-zh-HK</text>',
+        "  </g>",
+        "</svg>",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def main() -> None:
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+    docs_assets = ROOT / "docs" / "assets"
+    docs_assets.mkdir(parents=True, exist_ok=True)
     outputs = {
         "hero-globe.svg": build_hero_globe(),
         "before-after-demo.svg": build_before_after_demo(),
@@ -671,9 +708,14 @@ def main() -> None:
         "workflow-modes.svg": build_workflow_modes(),
     }
     for name, content in outputs.items():
-        path = ASSETS_DIR / name
-        path.write_text(content, encoding="utf-8")
-        print(f"Generated {path.relative_to(ROOT)} ({len(content):,} bytes)")
+        for target_dir in (ASSETS_DIR, docs_assets):
+            path = target_dir / name
+            path.write_text(content, encoding="utf-8")
+        print(f"Generated assets/{name} & docs/assets/{name} ({len(content):,} bytes)")
+
+    og_svg_path = Path("/tmp/og-image.svg")
+    og_svg_path.write_text(build_og_image(), encoding="utf-8")
+    print(f"Generated {og_svg_path} ({og_svg_path.stat().st_size:,} bytes)")
 
 
 if __name__ == "__main__":

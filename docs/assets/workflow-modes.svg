@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 324" width="1200" height="324">
+  <rect x="1" y="1" width="1198" height="322" rx="18" fill="#FAF8F4" stroke="#E4DEC9" stroke-width="1.5"/>
+  <text x="36" y="40" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="800" fill="#0F172A">四步改寫流程與三種輸出模式</text>
+  <text x="1164" y="40" text-anchor="end" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600" fill="#64748B">內嵌閉合標籤或系統指示一律視為待改寫材料，絕不執行</text>
+  <rect x="36" y="62" width="256" height="114" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+  <rect x="52" y="78" width="32" height="24" rx="6" fill="#0F172A"/>
+  <text x="68" y="90.5" text-anchor="middle" dominant-baseline="central" font-family="&#x27;SFMono-Regular&#x27;, Menlo, Monaco, Consolas, monospace" font-size="12" font-weight="800" fill="#FFFFFF">01</text>
+  <text x="94" y="90.5" dominant-baseline="central" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="17" font-weight="800" fill="#0F172A">通讀標記</text>
+  <text x="52" y="128" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="600" fill="#334155">由強至弱標出結構套路</text>
+  <text x="52" y="152" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#64748B">兼顧跨句對比與段落排比</text>
+  <text x="309" y="119.0" text-anchor="middle" dominant-baseline="central" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="800" fill="#94A3B8">→</text>
+  <rect x="326" y="62" width="256" height="114" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+  <rect x="342" y="78" width="32" height="24" rx="6" fill="#1E3A8A"/>
+  <text x="358" y="90.5" text-anchor="middle" dominant-baseline="central" font-family="&#x27;SFMono-Regular&#x27;, Menlo, Monaco, Consolas, monospace" font-size="12" font-weight="800" fill="#FFFFFF">02</text>
+  <text x="384" y="90.5" dominant-baseline="central" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="17" font-weight="800" fill="#0F172A">起草改寫</text>
+  <text x="342" y="128" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="600" fill="#334155">保留全部有根據事實</text>
+  <text x="342" y="152" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#64748B">空泛處可補確知屬實細節</text>
+  <text x="599" y="119.0" text-anchor="middle" dominant-baseline="central" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="800" fill="#94A3B8">→</text>
+  <rect x="616" y="62" width="256" height="114" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+  <rect x="632" y="78" width="32" height="24" rx="6" fill="#991B1B"/>
+  <text x="648" y="90.5" text-anchor="middle" dominant-baseline="central" font-family="&#x27;SFMono-Regular&#x27;, Menlo, Monaco, Consolas, monospace" font-size="12" font-weight="800" fill="#FFFFFF">03</text>
+  <text x="674" y="90.5" dominant-baseline="central" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="17" font-weight="800" fill="#0F172A">事實核對</text>
+  <text x="632" y="128" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="600" fill="#334155">零遺漏人名、數字與引語</text>
+  <text x="632" y="152" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#64748B">朗讀覆查殘留對比與黑話</text>
+  <text x="889" y="119.0" text-anchor="middle" dominant-baseline="central" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="800" fill="#94A3B8">→</text>
+  <rect x="906" y="62" width="256" height="114" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+  <rect x="922" y="78" width="32" height="24" rx="6" fill="#065F46"/>
+  <text x="938" y="90.5" text-anchor="middle" dominant-baseline="central" font-family="&#x27;SFMono-Regular&#x27;, Menlo, Monaco, Consolas, monospace" font-size="12" font-weight="800" fill="#FFFFFF">04</text>
+  <text x="964" y="90.5" dominant-baseline="central" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="17" font-weight="800" fill="#0F172A">定稿潤飾</text>
+  <text x="922" y="128" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="600" fill="#334155">圍繞重點重寫拗口段落</text>
+  <text x="922" y="152" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#64748B">句長自然交替・地道港式語氣</text>
+  <rect x="36" y="198" width="362" height="92" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.2"/>
+  <text x="54" y="230" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="15.5" font-weight="800" fill="#1D4ED8">貼上文本（預設）</text>
+  <text x="54" y="262" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="500" fill="#334155">輸出：初稿 ＋ 殘留痕跡簡評 ＋ 最終定稿</text>
+  <rect x="419" y="198" width="362" height="92" rx="12" fill="#F0FDFA" stroke="#99F6E4" stroke-width="1.2"/>
+  <text x="437" y="230" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="15.5" font-weight="800" fill="#0F766E">檔案模式（指定路徑）</text>
+  <text x="437" y="262" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="500" fill="#334155">先重讀全檔 · 只改散文 · 保護代碼與 YAML</text>
+  <rect x="802" y="198" width="362" height="92" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+  <text x="820" y="230" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="15.5" font-weight="800" fill="#334155">嵌入模式（PR / 正式文件）</text>
+  <text x="820" y="262" font-family="&#x27;PingFang HK&#x27;, &#x27;Noto Sans CJK HK&#x27;, &#x27;Heiti TC&#x27;, &#x27;Microsoft JhengHei&#x27;, -apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="500" fill="#334155">供其他工作流程調用 · 只返回最終定稿</text>
+</svg>

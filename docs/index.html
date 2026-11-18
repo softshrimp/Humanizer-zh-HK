@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Humanizer-zh-HK｜香港書面語「去 AI 味」工具・清除 AI 寫作痕跡 Agent Skill</title>
+  <meta name="description" content="Humanizer-zh-HK 是專為香港書面語設計的開源去 AI 味技能（基於 blader/humanizer v4.0.0 與維基百科 AI 寫作特徵指南）。自動清除 28 種 AI 結構套路、內地互聯網黑話、兩岸詞彙錯置（同比→按年、軟體→軟件、質量→質素）及簡轉繁錯字，支援 Claude Code、Codex、Cursor 與 Antigravity。">
+  <meta name="keywords" content="Humanizer-zh-HK, 去AI味, 香港書面語, AI 寫作痕跡, 繁體中文 AI 改寫, 清除大陸用語, 簡轉繁錯別字, Claude Code Skill, Codex Skill, Cursor Skill, Antigravity Plugin">
+  <meta name="author" content="softshrimp">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://softshrimp.github.io/Humanizer-zh-HK/">
+  <link rel="alternate" hreflang="zh-HK" href="https://softshrimp.github.io/Humanizer-zh-HK/">
+  <link rel="alternate" hreflang="zh-Hant-HK" href="https://softshrimp.github.io/Humanizer-zh-HK/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://softshrimp.github.io/Humanizer-zh-HK/">
+  <link rel="alternate" hreflang="x-default" href="https://softshrimp.github.io/Humanizer-zh-HK/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Humanizer-zh-HK">
+  <meta property="og:locale" content="zh_HK">
+  <meta property="og:title" content="Humanizer-zh-HK｜香港書面語「去 AI 味」Agent Skill">
+  <meta property="og:description" content="清除 28 種 AI 結構套路、內地黑話、兩岸詞彙錯置與簡轉繁錯字，100% 保留原文事實。支援 Claude Code、Codex、Cursor 與 Antigravity。">
+  <meta property="og:url" content="https://softshrimp.github.io/Humanizer-zh-HK/">
+  <meta property="og:image" content="https://softshrimp.github.io/Humanizer-zh-HK/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Humanizer-zh-HK 維基風格 3D 繁體中文文字地球與去 AI 味介紹">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Humanizer-zh-HK｜香港書面語「去 AI 味」Agent Skill">
+  <meta name="twitter:description" content="基於 blader/humanizer v4.0.0：清除 28 種 AI 寫作痕跡、內地黑話、兩岸詞彙錯置與簡轉繁錯字，還原地道香港書面語。">
+  <meta name="twitter:image" content="https://softshrimp.github.io/Humanizer-zh-HK/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23991B1B'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='serif' font-size='36' font-weight='bold' fill='%23FFFFFF'%3E%E6%B8%AF%3C/text%3E%3C/svg%3E">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Humanizer-zh-HK",
+        "alternateName": [
+          "Humanizer zh-HK",
+          "香港書面語 Humanizer",
+          "港式中文去 AI 味工具"
+        ],
+        "description": "專為香港書面語設計的開源去 AI 寫作痕跡技能（基於 blader/humanizer v4.0.0 與維基百科 Signs of AI writing 指南），清除 28 種 AI 結構套路、內地互聯網黑話、兩岸詞彙錯置與簡繁轉換同形錯字，同時完整保留原文事實。",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Cross-platform",
+        "softwareVersion": "4.0.0",
+        "inLanguage": "zh-HK",
+        "license": "https://opensource.org/licenses/MIT",
+        "url": "https://softshrimp.github.io/Humanizer-zh-HK/",
+        "downloadUrl": "https://github.com/softshrimp/Humanizer-zh-HK",
+        "codeRepository": "https://github.com/softshrimp/Humanizer-zh-HK",
+        "image": "https://softshrimp.github.io/Humanizer-zh-HK/og-image.png",
+        "isBasedOn": "https://github.com/blader/humanizer",
+        "author": {
+          "@type": "Person",
+          "name": "softshrimp",
+          "url": "https://github.com/softshrimp"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "HKD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Humanizer-zh-HK 與 Humanizer-zh、Humanizer-zh-TW 有何分別？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "op7418/Humanizer-zh 面向內地簡體中文，Humanizer-zh-TW 面向台灣繁體用語（如軟體、網路、專案、默認）。Humanizer-zh-HK 則專門對齊香港傳媒、商業報告及公私營機構文書規範：保留全部上游 v4.0.0 的 26 項跨語言 AI 結構套路，再額外加入 §27 兩岸詞彙校正（如同比→按年、質量→質素、軟體→軟件、視頻→影片、通過→透過）與 §28 簡轉繁同形錯字檢查，並預設使用香港直角引號「…」及全形標點。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "如何在 Claude Code、Codex、Cursor 或 Antigravity 安裝 Humanizer-zh-HK？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "大部分支援 Agent Skills 標準的工具只需在終端機執行一條指令：npx skills add softshrimp/Humanizer-zh-HK --global --agent '*'。Claude Code 用戶亦可使用 /plugin marketplace add softshrimp/Humanizer-zh-HK 及 /plugin install humanizer-zh-hk@humanizer-zh-hk；pi 用戶執行 pi install git:github.com/softshrimp/Humanizer-zh-HK；Antigravity 用戶則可將插件放進 ~/.gemini/config/plugins/humanizer-zh-hk/ 或專案的 .agents/skills/ 目錄。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "為何 AI 生成的繁體中文總是帶有「AI 味」與非港式用詞？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "大型語言模型預測統計上最穩妥的字句，往往傾向「不是 X 而是 Y」虛假對比、三連排比、破折號連接與空洞收尾句；同時中文模型的訓練語料混雜大量簡體公關稿、英譯中長句及台灣繁體語料，即使要求輸出繁體中文，仍會出現賦能、閉環、同比、質量、軟體或西式彎引號等偏離香港書面語的痕跡。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Humanizer-zh-HK 能否用來繞過 AI 偵測器（AI Detector）？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不能，亦不以此為目標。與上游 blader/humanizer 一致，Humanizer-zh-HK 專注於為人類讀者寫好自然、準確且合乎香港語境的文章，而非針對演算法漏洞繞過 AI 偵測器。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "改寫商業報告、新聞稿或 Markdown 檔案時，會否改錯數字或破壞程式碼？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不會。Humanizer-zh-HK 在第 3 步設專項事實核對，禁止遺漏或改動任何數字、日期、人名、機構名稱、引語及時間關係；在檔案模式下只修改散文正文，並完整保留程式碼區塊、行內代碼、指令、檔案路徑、YAML 元數據及連結目標。"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #faf8f4;
+      --surface: #ffffff;
+      --border: #e4dec9;
+      --border-soft: #e5e7eb;
+      --ink: #0f172a;
+      --muted: #475569;
+      --accent: #991b1b;
+      --accent-soft: #fef2f2;
+      --teal: #0f766e;
+      --teal-soft: #f0fdfa;
+      --blue: #1d4ed8;
+      --radius: 16px;
+      --serif: 'Songti TC', 'Noto Serif CJK HK', 'Source Han Serif TC', 'PMingLiU', 'Hiragino Mincho ProN', Georgia, serif;
+      --sans: 'PingFang HK', 'Noto Sans CJK HK', 'Heiti TC', 'Microsoft JhengHei', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre { font-family: var(--mono); }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+    /* Top Nav */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(250, 248, 244, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 58px;
+    }
+    .brand {
+      font-family: var(--serif);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      flex-wrap: wrap;
+    }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* Hero */
+    .hero { padding: 28px 0 24px; }
+    .hero-head {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 3.2vw, 2.45rem);
+      line-height: 1.25;
+      margin: 0;
+      color: var(--ink);
+    }
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0;
+      max-width: 820px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .install-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-family: var(--mono);
+    }
+    .copy-btn {
+      background: #334155;
+      color: #fff;
+      border: 0;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-family: var(--sans);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #475569; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+    }
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .btn:hover { text-decoration: none; filter: brightness(0.97); }
+    .svg-frame {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius);
+    }
+
+    /* Sections */
+    section { padding: 34px 0; border-top: 1px solid var(--border); }
+    h2 {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+    .section-desc { color: var(--muted); margin: 0 0 18px; }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+      text-align: left;
+    }
+    th, td { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+    th { background: #f8fafc; font-weight: 700; color: var(--ink); white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    .badge-hk {
+      display: inline-block;
+      background: var(--teal-soft);
+      color: var(--teal);
+      border: 1px solid #99f6e4;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* Grid cards */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .card h3 { margin: 0 0 10px; font-size: 1.05rem; }
+
+    /* Accordions */
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--ink);
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    details[open] summary { margin-bottom: 12px; }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .faq-item h3 { margin: 0 0 6px; font-size: 1.04rem; color: var(--ink); }
+    .faq-item p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+    footer {
+      padding: 28px 0 44px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .install-pill { width: 100%; justify-content: space-between; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top">
+        <span>Humanizer-zh-HK</span>
+        <span class="brand-badge">v4.0.0</span>
+      </a>
+      <nav class="nav-links" aria-label="主導覽">
+        <a href="#before-after">改寫示範</a>
+        <a href="#comparison">版本比較</a>
+        <a href="#hk-glossary">港式書面語速查</a>
+        <a href="#patterns">28 種模式</a>
+        <a href="#install">安裝方式</a>
+        <a href="#faq">常見問題</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero" style="border-top: 0;">
+      <div class="hero-head">
+        <h1>Humanizer-zh-HK：香港書面語「去 AI 味」與 AI 寫作痕跡清除工具</h1>
+        <p class="lead">
+          基於 <a href="https://github.com/blader/humanizer">blader/humanizer</a>（v4.0.0）與維基百科〈Signs of AI writing〉指南，專為香港正式文章、商業報告、新聞稿及專業文書而設。在 100% 保留原文事實與數字的前提下，一次清除 28 種 AI 結構套路、內地互聯網黑話、兩岸詞彙錯置與簡轉繁同形錯字。
+        </p>
+        <div class="cta-row">
+          <div class="install-pill">
+            <code id="cmd-main">npx skills add softshrimp/Humanizer-zh-HK --global --agent '*'</code>
+            <button class="copy-btn" type="button" data-copy="cmd-main">複製</button>
+          </div>
+          <a class="btn btn-primary" href="https://github.com/softshrimp/Humanizer-zh-HK">GitHub 儲存庫</a>
+          <a class="btn" href="https://raw.githubusercontent.com/softshrimp/Humanizer-zh-HK/main/SKILL.md">SKILL.md 原文</a>
+          <a class="btn" href="llms.txt">llms.txt</a>
+        </div>
+      </div>
+      <img class="svg-frame" src="assets/hero-globe.svg" width="1200" height="540" fetchpriority="high" alt="Humanizer-zh-HK 維基風格 3D 繁體中文文字地球與去 AI 味介紹">
+    </section>
+
+    <section id="before-after">
+      <h2>改寫前後對照示範</h2>
+      <p class="section-desc">保留全部檔名、事實與時間關係，同時刪去「不僅僅是…更是…」、破折號連接、內地黑話（「賦能」「降本增效」）及非港式財經詞（「同比」改為「按年」）。</p>
+      <img class="svg-frame" src="assets/before-after-demo.svg" width="1200" height="466" loading="lazy" alt="Humanizer-zh-HK 產品發佈公告改寫前後視覺對照圖">
+    </section>
+
+    <section id="comparison">
+      <h2>與其他 Humanizer 版本比較</h2>
+      <p class="section-desc">針對寫作語言、地域詞彙、標點符號與上游架構差異整理：</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>Humanizer-zh-HK <span class="badge-hk">本專案</span></th>
+              <th>Humanizer-zh-TW</th>
+              <th>Humanizer-zh</th>
+              <th>blader/humanizer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>目標語體</strong></td>
+              <td>香港書面語（正式文章、報告、新聞稿、商務文書）</td>
+              <td>台灣繁體中文書面／日常語體</td>
+              <td>內地簡體中文</td>
+              <td>英文（English）</td>
+            </tr>
+            <tr>
+              <td><strong>標點規範</strong></td>
+              <td>全形直角引號「<code>「…」</code>」（內層 <code>『…』</code>），禁用 <code>——</code></td>
+              <td>台灣繁體直角引號與全形標點</td>
+              <td>簡體彎引號「<code>“…”</code>」</td>
+              <td>英文直引號 <code>"..."</code></td>
+            </tr>
+            <tr>
+              <td><strong>財經與科技詞彙</strong></td>
+              <td>按年、按季、質素、軟件、硬件、網絡、項目、預設、伺服器、影片、透過</td>
+              <td>年增率、品質、軟體、硬體、網路、專案、預設、伺服器、影片</td>
+              <td>同比、環比、質量、軟件、網絡、項目、默認、視頻</td>
+              <td>Plain English</td>
+            </tr>
+            <tr>
+              <td><strong>繁體字形校正</strong></td>
+              <td>內建 §28 簡轉繁同形錯字校正（憑藉、製造、範圍、農曆、聯繫、佔比、裏面）</td>
+              <td>視各分支規則而定</td>
+              <td>不適用（簡體）</td>
+              <td>不適用（英文）</td>
+            </tr>
+            <tr>
+              <td><strong>上游核心版本</strong></td>
+              <td>對齊 <code>blader/humanizer</code> v4.0.0（26+2 共 28 項模式）</td>
+              <td>多基於 v2 / v3 改編</td>
+              <td>多基於早期版本</td>
+              <td>v4.0.0（26 項模式）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="hk-glossary">
+      <h2>香港書面語在地化校正速查</h2>
+      <p class="section-desc">AI 模型寫繁體中文時常混入簡體公關套話或台灣用語，Humanizer-zh-HK 會在不改變專有名詞與直接引語的前提下自動替換：</p>
+      <img class="svg-frame" src="assets/hk-lexical-guide.svg" width="1200" height="440" loading="lazy" alt="香港書面語去內地黑話、兩岸詞彙及簡轉繁錯字速查圖">
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>清除內地互聯網黑話（§12）</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>AI 常見寫法</th><th>港式書面語</th></tr></thead>
+              <tbody>
+                <tr><td>賦能前線</td><td>提供工具／支援前線</td></tr>
+                <tr><td>尋找抓手</td><td>切入點／具體措施</td></tr>
+                <tr><td>打通閉環</td><td>串連完整流程</td></tr>
+                <tr><td>精細顆粒度</td><td>細緻程度／分類明細</td></tr>
+                <tr><td>賽道／痛點</td><td>行業範疇／核心難題</td></tr>
+                <tr><td>降本增效</td><td>控制成本、提升效率</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <h3>修正兩岸詞彙錯置（§27）</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>非港式用詞</th><th>港式書面語</th></tr></thead>
+              <tbody>
+                <tr><td>同比／環比</td><td>按年／按季、按月</td></tr>
+                <tr><td>服務質量</td><td>服務質素</td></tr>
+                <tr><td>軟體／硬體／網路</td><td>軟件／硬件／網絡</td></tr>
+                <tr><td>專案／默認</td><td>項目／預設</td></tr>
+                <tr><td>服務器／視頻</td><td>伺服器／影片</td></tr>
+                <tr><td>通過…實現</td><td>透過／經…達成</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <h3>簡轉繁錯字與標點（§21 · §28）</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>常見錯置</th><th>香港標準正字</th></tr></thead>
+              <tbody>
+                <tr><td>“西式彎引號”</td><td>「直角引號」（內層『』）</td></tr>
+                <tr><td>——破折號——</td><td>逗號、冒號、括號或分句</td></tr>
+                <tr><td>憑借／制造</td><td>憑藉／製造</td></tr>
+                <tr><td>范圍／占比</td><td>範圍／佔比</td></tr>
+                <tr><td>農歷／聯系</td><td>農曆／聯繫</td></tr>
+                <tr><td>這里／后續／頭發</td><td>這裏／後續／頭髮</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="patterns">
+      <h2>28 種 AI 寫作痕跡清單</h2>
+      <p class="section-desc">§1–§5、§22 及 §27–§28 見一次即改；其餘模式於同一段落伴隨其他痕跡時一併處理。</p>
+      <img class="svg-frame" src="assets/pattern-taxonomy.svg" width="1200" height="504" loading="lazy" alt="Humanizer-zh-HK 28 種 AI 寫作痕跡七大類別分佈圖" style="margin-bottom: 18px;">
+
+      <details open>
+        <summary>A. 鋪墊造勢，不直接陳述（§1–§5 · 最強痕跡）</summary>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>模式</th><th>常見寫法</th><th>改寫原則</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><strong>不是 X，而是 Y</strong></td><td>「這不僅僅是 X，更是 Y」、「這並不意味著 X。這意味著 Y。」</td><td>刪去虛假對比，直接陳述重點</td></tr>
+              <tr><td>2</td><td><strong>單句收尾與戲劇化碎句</strong></td><td>「這才是真正的關鍵。」；舉例後補「這說明了…的重要性」</td><td>刪去重複或替例子點題的收尾句；合併碎句</td></tr>
+              <tr><td>3</td><td><strong>故作高深的金句</strong></td><td>「歸根結底，真正重要的是…」、「透明度是信任的貨幣」</td><td>以具體主張取代格言式空話</td></tr>
+              <tr><td>4</td><td><strong>入題前的鋪墊開場</strong></td><td>「讓我們深入探討」、「坦白說？這取決於…」</td><td>刪去開場預告，開門見山入題</td></tr>
+              <tr><td>5</td><td><strong>與空氣爭辯</strong></td><td>「這主要不是關於…」、「一個看似直接的做法是…」</td><td>刪去無人提出的質疑或假方案，只留實質論點</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>B. 按規則套節奏與句式（§6–§11）</summary>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>模式</th><th>常見寫法</th><th>改寫原則</th></tr></thead>
+            <tbody>
+              <tr><td>6</td><td><strong>強湊三連排比</strong></td><td>「創新、啟發與洞見」；三句平行例子配教訓</td><td>按實際意思決定數量，合併重疊例子</td></tr>
+              <tr><td>7</td><td><strong>重複句首主語</strong></td><td>「審計署檢視了…審計署核對了…審計署寫入…」</td><td>合併句子或轉換主語與句首結構</td></tr>
+              <tr><td>8</td><td><strong>破折號當萬能連接詞</strong></td><td>「新政策——事前毫無預告——影響深遠」</td><td>改用逗號、句號、冒號或括號；有範本時跟隨範本</td></tr>
+              <tr><td>9</td><td><strong>疊床架屋的限定詞</strong></td><td>「在某種程度上或許可能會潛在地…」</td><td>只保留資料來源支持且語意必需的限定詞</td></tr>
+              <tr><td>10</td><td><strong>生硬複合修飾詞與連字號濫用</strong></td><td>「長效化、可持續性的跨團隊式機制」</td><td>拆為自然短句；英文連字號只留於名詞前或固定詞</td></tr>
+              <tr><td>11</td><td><strong>歐化被動句與萬能虛化動詞</strong></td><td>「被廣泛地應用」、「對方案進行了審視」、「企業們」</td><td>改用主動句與具體動詞，刪去冗餘「們」</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>C. 誇大拔高與借用權威（§12–§18）</summary>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>模式</th><th>常見寫法</th><th>改寫原則</th></tr></thead>
+            <tbody>
+              <tr><td>12</td><td><strong>高頻 AI 套話與互聯網黑話</strong></td><td>「此外、至關重要、彰顯」；「賦能、抓手、顆粒度、閉環」</td><td>換成平實具體的香港書面語</td></tr>
+              <tr><td>13</td><td><strong>誇大意義與拔高結尾</strong></td><td>「標誌着關鍵里程碑」、「前景一片光明」</td><td>保留事實並刪去拔高評語，在最後具體事實收筆</td></tr>
+              <tr><td>14</td><td><strong>含糊其辭的關聯</strong></td><td>「與管理層有所關聯」、「配合…而舉辦」</td><td>若確知具體關係或職銜，直接寫明</td></tr>
+              <tr><td>15</td><td><strong>句尾硬掛意義尾巴</strong></td><td>「…，從而實現了…，彰顯了…，體現出…」</td><td>只保留資料來源支持的因果或事實</td></tr>
+              <tr><td>16</td><td><strong>公關宣傳與樓書旅遊腔</strong></td><td>「坐落於得天獨厚的核心地段，令人嘆為觀止」</td><td>收起廣告辭令，平實交代事物本身</td></tr>
+              <tr><td>17</td><td><strong>借用空泛權威</strong></td><td>「專家普遍認為…」、「曾獲《金融時報》、彭博引用」</td><td>寫明具體消息來源與實際論點，否則刪去背書</td></tr>
+              <tr><td>18</td><td><strong>避用「是」與「有」</strong></td><td>「作為…的存在、扮演着…的角色、坐擁、配備」</td><td>直接改用「是」、「有」、「設於」或「包括」</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>D. 按規則套格式與標點（§19–§21）</summary>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>模式</th><th>常見寫法</th><th>改寫原則</th></tr></thead>
+            <tbody>
+              <tr><td>19</td><td><strong>裝飾性粗體與標籤清單</strong></td><td>段內逐詞加粗；「<strong>處理速度：</strong> 處理速度大幅提升」</td><td>刪去無謂粗體；將空泛標籤清單改寫為段落</td></tr>
+              <tr><td>20</td><td><strong>裝飾性標題與符號</strong></td><td>「🚀 第三季發佈階段：」、「一張表看懂決策」</td><td>刪去表情符號、裝飾箭頭與多餘分隔線</td></tr>
+              <tr><td>21</td><td><strong>引號與中西標點錯置</strong></td><td>中文句內寫 <code>“檢討報告(暫定)” ,</code></td><td>統一改用香港直角引號「<code>「…」</code>」與全形標點</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>E. 對話殘留與草稿痕跡（§22–§25）</summary>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>模式</th><th>常見寫法</th><th>改寫原則</th></tr></thead>
+            <tbody>
+              <tr><td>22</td><td><strong>聊天機械人殘留語</strong></td><td>「好問題！以下為你整理…希望對你有幫助！」</td><td>刪去首尾寒暄與客套，只留正文</td></tr>
+              <tr><td>23</td><td><strong>知識截止免責聲明與無據揣測</strong></td><td>「雖然現有公開資料記載不多，但推測可能…」</td><td>說明資料未載或刪去該句，切勿自行揣測</td></tr>
+              <tr><td>24</td><td><strong>首句重複標題</strong></td><td><code>## 結算延遲問題</code> 下首段單寫「結算速度非常重要。」</td><td>刪去重複首句，直接入正題</td></tr>
+              <tr><td>25</td><td><strong>描寫文件本身而非主題</strong></td><td>「新增此函數以取代…」、「下表整理自…」</td><td>直接描寫主題；體例只在無法自行看出時說明一次</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>F &amp; G. 讀者對象與香港書面語專項（§26–§28）</summary>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>模式</th><th>常見寫法</th><th>改寫原則</th></tr></thead>
+            <tbody>
+              <tr><td>26</td><td><strong>向知情讀者重述背景</strong></td><td>回覆討論串時先重述起因與排查經過，最後一行才寫決定</td><td>首句先寫決定；排查細節留待後續工單記錄</td></tr>
+              <tr><td>27</td><td><strong>內地與台灣詞彙錯置</strong></td><td>「同比、環比、質量、軟體、網路、專案、默認、視頻」</td><td>改用香港書面語（按年、按季、質素、軟件、網絡、項目、預設、影片）</td></tr>
+              <tr><td>28</td><td><strong>簡繁轉換同形錯字</strong></td><td>「背后、頭發、農歷、范圍、制造、憑借、占比、聯系、里面」</td><td>按香港繁體正字校正（背後、頭髮、農曆、範圍、製造、憑藉、佔比、聯繫、裏面）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section id="install">
+      <h2>運作流程與安裝指令</h2>
+      <p class="section-desc">零依賴純 Markdown 技能設計，可直接用於多種 AI 程式開發與寫作助手：</p>
+      <img class="svg-frame" src="assets/workflow-modes.svg" width="1200" height="324" loading="lazy" alt="Humanizer-zh-HK 四步改寫流程與三種輸出模式圖" style="margin-bottom: 18px;">
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>工具 / 平台</th><th>安裝與使用方法</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Skills CLI（通用）</strong></td><td><code>npx skills add softshrimp/Humanizer-zh-HK --global --agent '*'</code></td></tr>
+            <tr><td><strong>Claude Code</strong></td><td><code>/plugin marketplace add softshrimp/Humanizer-zh-HK</code> 後執行 <code>/plugin install humanizer-zh-hk@humanizer-zh-hk</code></td></tr>
+            <tr><td><strong>Codex</strong></td><td><code>npx skills add softshrimp/Humanizer-zh-HK --global --agent codex</code></td></tr>
+            <tr><td><strong>pi</strong></td><td><code>pi install git:github.com/softshrimp/Humanizer-zh-HK</code></td></tr>
+            <tr><td><strong>Antigravity</strong></td><td>安裝於全局 <code>~/.gemini/config/plugins/humanizer-zh-hk/</code> 或專案 <code>.agents/skills/humanizer-zh-hk/SKILL.md</code></td></tr>
+            <tr><td><strong>Claude.ai / Desktop</strong></td><td>下載儲存庫 ZIP 後，於設定頁上傳為自訂 Skill</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>常見問題（FAQ）</h2>
+      <div class="faq-item">
+        <h3>Humanizer-zh-HK 與 Humanizer-zh、Humanizer-zh-TW 有何分別？</h3>
+        <p>op7418/Humanizer-zh 面向內地簡體中文，Humanizer-zh-TW 面向台灣繁體用語（如軟體、網路、專案、默認）。Humanizer-zh-HK 則專門對齊香港傳媒、商業報告及公私營機構文書規範：保留全部上游 v4.0.0 的 26 項跨語言 AI 結構套路，再額外加入 §27 兩岸詞彙校正（如同比→按年、質量→質素、軟體→軟件、視頻→影片、通過→透過）與 §28 簡轉繁同形錯字檢查，並預設使用香港直角引號「…」及全形標點。</p>
+      </div>
+      <div class="faq-item">
+        <h3>如何在 Claude Code、Codex、Cursor 或 Antigravity 安裝 Humanizer-zh-HK？</h3>
+        <p>大部分支援 Agent Skills 標準的工具只需在終端機執行一條指令：<code>npx skills add softshrimp/Humanizer-zh-HK --global --agent '*'</code>。Claude Code 用戶亦可使用 <code>/plugin marketplace add softshrimp/Humanizer-zh-HK</code> 及 <code>/plugin install humanizer-zh-hk@humanizer-zh-hk</code>；pi 用戶執行 <code>pi install git:github.com/softshrimp/Humanizer-zh-HK</code>；Antigravity 用戶則可將插件放進 <code>~/.gemini/config/plugins/humanizer-zh-hk/</code> 或專案的 <code>.agents/skills/</code> 目錄。</p>
+      </div>
+      <div class="faq-item">
+        <h3>為何 AI 生成的繁體中文總是帶有「AI 味」與非港式用詞？</h3>
+        <p>大型語言模型預測統計上最穩妥的字句，往往傾向「不是 X 而是 Y」虛假對比、三連排比、破折號連接與空洞收尾句；同時中文模型的訓練語料混雜大量簡體公關稿、英譯中長句及台灣繁體語料，即使要求輸出繁體中文，仍會出現賦能、閉環、同比、質量、軟體或西式彎引號等偏離香港書面語的痕跡。</p>
+      </div>
+      <div class="faq-item">
+        <h3>Humanizer-zh-HK 能否用來繞過 AI 偵測器（AI Detector）？</h3>
+        <p>不能，亦不以此為目標。與上游 blader/humanizer 一致，Humanizer-zh-HK 專注於為人類讀者寫好自然、準確且合乎香港語境的文章，而非針對演算法漏洞繞過 AI 偵測器。</p>
+      </div>
+      <div class="faq-item">
+        <h3>改寫商業報告、新聞稿或 Markdown 檔案時，會否改錯數字或破壞程式碼？</h3>
+        <p>不會。Humanizer-zh-HK 在第 3 步設專項事實核對，禁止遺漏或改動任何數字、日期、人名、機構名稱、引語及時間關係；在檔案模式下只修改散文正文，並完整保留程式碼區塊、行內代碼、指令、檔案路徑、YAML 元數據及連結目標。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong>Humanizer-zh-HK</strong> v4.0.0 · MIT 授權 · 基於
+        <a href="https://github.com/blader/humanizer">blader/humanizer</a> 與
+        <a href="https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing">Wikipedia: Signs of AI writing</a>
+      </div>
+      <div>
+        <a href="https://github.com/softshrimp/Humanizer-zh-HK">GitHub</a> ·
+        <a href="llms.txt">llms.txt</a> ·
+        <a href="sitemap.xml">sitemap.xml</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var el = document.getElementById(btn.getAttribute('data-copy'));
+        if (!el || !navigator.clipboard) return;
+        navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+          var prev = btn.textContent;
+          btn.textContent = '已複製';
+          setTimeout(function () { btn.textContent = prev; }, 1600);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

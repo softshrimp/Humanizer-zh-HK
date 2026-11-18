@@ -6,9 +6,21 @@
     "name": "softshrimp",
     "url": "https://github.com/softshrimp"
   },
-  "homepage": "https://github.com/softshrimp/Humanizer-zh-HK",
+  "homepage": "https://softshrimp.github.io/Humanizer-zh-HK/",
   "repository": "https://github.com/softshrimp/Humanizer-zh-HK",
   "license": "MIT",
-  "keywords": ["writing", "editing", "humanize", "prose", "style", "zh-hk", "hong-kong"],
+  "keywords": [
+    "humanizer",
+    "humanizer-zh",
+    "zh-hk",
+    "hong-kong",
+    "traditional-chinese",
+    "cantonese",
+    "ai-writing",
+    "copywriting",
+    "editing",
+    "claude-skill",
+    "agent-skills"
+  ],
   "skills": ["./"]
 }

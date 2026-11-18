@@ -2,9 +2,23 @@
   "name": "humanizer-zh-hk",
   "private": true,
   "description": "將帶有 AI 痕跡的中文改寫成自然、地道的香港書面語，同時完整保留原文事實與原意。",
+  "homepage": "https://softshrimp.github.io/Humanizer-zh-HK/",
   "license": "MIT",
   "repository": "github:softshrimp/Humanizer-zh-HK",
-  "keywords": ["pi-package", "zh-hk", "hong-kong", "humanizer", "writing"],
+  "keywords": [
+    "pi-package",
+    "humanizer",
+    "humanizer-zh",
+    "zh-hk",
+    "hong-kong",
+    "traditional-chinese",
+    "cantonese",
+    "ai-writing",
+    "copywriting",
+    "editing",
+    "claude-skill",
+    "agent-skills"
+  ],
   "pi": {
     "skills": ["./"]
   }

@@ -1,13 +1,23 @@
+# Humanizer-zh-HK — 香港書面語「去 AI 味」技能
+
 <p align="center">
-  <img src="assets/hero-globe.svg" alt="Humanizer-zh-HK 維基風格文字地球圖" width="100%" />
+  <a href="https://github.com/softshrimp/Humanizer-zh-HK/releases/tag/v4.0.0"><img src="https://img.shields.io/badge/release-v4.0.0-991B1B?style=flat-square" alt="v4.0.0 Release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-0F766E?style=flat-square" alt="MIT License"></a>
+  <a href="https://softshrimp.github.io/Humanizer-zh-HK/"><img src="https://img.shields.io/badge/docs-GitHub%20Pages%20%E9%80%9F%E6%9F%A5%E7%B6%B2%E7%AB%99-1D4ED8?style=flat-square" alt="GitHub Pages 線上速查網站"></a>
+  <a href="https://softshrimp.github.io/Humanizer-zh-HK/llms.txt"><img src="https://img.shields.io/badge/GEO-llms.txt-334155?style=flat-square" alt="llms.txt"></a>
 </p>
 
 <p align="center">
+  <img src="assets/hero-globe.svg" alt="Humanizer-zh-HK 維基風格 3D 繁體中文文字地球與去 AI 味介紹" width="100%" />
+</p>
+
+<p align="center">
+  <a href="https://softshrimp.github.io/Humanizer-zh-HK/">線上速查網站</a> ·
   <a href="#前後改寫示範">改寫示範</a> ·
+  <a href="#版本定位比較">版本比較</a> ·
   <a href="#快速安裝與使用">快速安裝</a> ·
   <a href="#運作流程與港式書面語速查">港式速查</a> ·
-  <a href="#28-種-ai-寫作痕跡">28 種模式清單</a> ·
-  <a href="CHANGELOG.md">更新日誌</a>
+  <a href="#28-種-ai-寫作痕跡">28 種模式清單</a>
 </p>
 
 基於 [blader/humanizer](https://github.com/blader/humanizer)（v4.0.0）與維基百科〈[Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)〉指南構建的**香港書面語**去 AI 寫作痕跡技能（Agent Skill），適用於 Antigravity、Claude Code、Codex、Cursor、pi 及任何支援 Agent Skills 的工具。
@@ -17,7 +27,7 @@ Humanizer-zh-HK 專為**人類讀者**改好正式文章、商業報告、新聞
 ## 前後改寫示範
 
 <p align="center">
-  <img src="assets/before-after-demo.svg" alt="改寫前後視覺對照圖" width="100%" />
+  <img src="assets/before-after-demo.svg" alt="Humanizer-zh-HK 產品發佈公告改寫前後視覺對照圖（清除 7 處 AI 痕跡）" width="100%" />
 </p>
 
 <details>
@@ -85,17 +95,17 @@ Humanizer-zh-HK 專為**人類讀者**改好正式文章、商業報告、新聞
 ## 運作流程與港式書面語速查
 
 <p align="center">
-  <img src="assets/workflow-modes.svg" alt="四步改寫流程與三種輸出模式" width="100%" />
+  <img src="assets/workflow-modes.svg" alt="Humanizer-zh-HK 四步改寫流程與三種輸出模式圖" width="100%" />
 </p>
 
 <p align="center">
-  <img src="assets/hk-lexical-guide.svg" alt="香港書面語在地化校正速查" width="100%" />
+  <img src="assets/hk-lexical-guide.svg" alt="香港書面語去內地黑話、兩岸詞彙錯置及簡轉繁正字速查圖" width="100%" />
 </p>
 
 ## 28 種 AI 寫作痕跡
 
 <p align="center">
-  <img src="assets/pattern-taxonomy.svg" alt="28 種 AI 寫作痕跡分佈圖" width="100%" />
+  <img src="assets/pattern-taxonomy.svg" alt="Humanizer-zh-HK 28 種 AI 寫作痕跡七大類別分佈圖" width="100%" />
 </p>
 
 點擊下方各分類展開詳細對照表（**§1–§5、§22 及 §27–§28 見一次即改**；標註「*單見不足為據*」者於同段多處並見時處理）：
@@ -184,8 +194,30 @@ Humanizer-zh-HK 專為**人類讀者**改好正式文章、商業報告、新聞
 
 </details>
 
+## 版本定位比較
+
+| 比較項目 | **Humanizer-zh-HK** | Humanizer-zh-TW | Humanizer-zh | blader/humanizer |
+|---|---|---|---|---|
+| **目標語體** | 香港書面語（文章、報告、新聞稿、商務） | 台灣繁體中文 | 內地簡體中文 | 英文（English） |
+| **引號與標點** | 全形直角引號「`「…」`」，禁用 `——` | 台灣直角引號與全形標點 | 簡體彎引號 `“…”` | 英文直引號 `"..."` |
+| **核心用語校正** | 按年、質素、軟件、網絡、項目、預設、透過 | 年增率、品質、軟體、網路、專案 | 同比、質量、軟件、默認、視頻 | Plain English |
+| **繁簡正字檢查** | 內建 §28 簡轉繁同形錯字校正（憑藉、製造、範圍） | 視分支規則而定 | 不適用 | 不適用 |
+
+<details>
+<summary>❓ 常見問題（FAQ：香港書面語、與台灣／簡體版差異、AI 偵測器）</summary>
+
+- **Humanizer-zh-HK 與 Humanizer-zh、Humanizer-zh-TW 有何分別？**  
+  `Humanizer-zh` 面向內地簡體，`Humanizer-zh-TW` 面向台灣用語（軟體、網路、專案）。`Humanizer-zh-HK` 專為香港傳媒、商業報告及專業文書設計，保留上游 v4.0.0 全部 26 項結構規則，並新增 §27 兩岸詞彙轉換（同比→按年、質量→質素、軟體→軟件、視頻→影片）與 §28 簡轉繁同形錯字校正。
+- **Humanizer-zh-HK 能否用來繞過 AI 偵測器（AI Detector）？**  
+  不能，亦不以此為目標。本技能專注於為人類讀者寫出自然、準確且合乎香港書面語規範的文章。
+- **改寫商業報告或 Markdown 檔案時，會否改錯數字或破壞程式碼？**  
+  不會。第 3 步設專項事實核對，禁止遺漏或改動數字、日期、人名與引語；檔案模式下只修改散文正文，保留程式碼區塊、行內代碼、YAML 元數據、路徑與連結目標不變。
+
+</details>
+
 ## 資料來源與授權
 
+- **線上展示頁與 AI 索引：** [GitHub Pages 速查網站](https://softshrimp.github.io/Humanizer-zh-HK/) · [llms.txt](https://softshrimp.github.io/Humanizer-zh-HK/llms.txt)
 - **上游專案：** [blader/humanizer](https://github.com/blader/humanizer)（作者 Siqi Chen，MIT 授權）
 - **模式依據：** [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)（[WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)）
 - **版本紀錄：** 見 [CHANGELOG.md](CHANGELOG.md)

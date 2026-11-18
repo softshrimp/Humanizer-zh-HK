@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://softshrimp.github.io/Humanizer-zh-HK/sitemap.xml
